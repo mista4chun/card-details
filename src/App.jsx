@@ -9,9 +9,9 @@ import Confirm from "./Confirm";
 function App() {
   const [error, setError] = useState(false);
   const [name, setName] = useState("");
-  const [num, setNum] = useState("0000 0000 0000 0000");
+  const [num, setNum] = useState("");
   const [date, setDate] = useState("01/23");
-  const [cvc, setCvc] = useState("123");
+  const [cvc, setCvc] = useState("");
   const [confirmed, setConfirmed] = useState(false);
 
   return (
@@ -36,17 +36,16 @@ function App() {
           className="absolute sm:z-10 sm:ml-10 sm:mt-[9.5rem] sm:w-14 md:z-0 md:ml-48 md:mt-48 md:w-fit"
         />
         <div className="absolute font-space tracking-widest text-white sm:z-10 sm:ml-10 sm:mt-56 sm:text-[18px] md:z-0 md:ml-48 md:mt-[19rem] md:text-[28px]">
-          {num
-            .replace(/\s/g, "")
-            .replace(/(\d{4})/g, "$1 ")
-            .trim()}
+          {num ? num : "0000 0000 0000 0000"}
         </div>
         <div className="sm absolute flex font-space uppercase tracking-widest text-white sm:z-10 sm:ml-10 sm:mt-[16.3rem] sm:text-xs md:z-0 md:ml-48 md:mt-[22.5rem] md:text-sm">
-          <p className="">{name}</p>
-          <p className="sm:ml-24 md:ml-52">{format(new Date(date), "MM/yy")}</p>
+          <p className="">{name ? name : "Jane Appleseed"}</p>
+          <p className="sm:ml-24 md:ml-52">
+            {date ? format(new Date(date), "MM/yy") : "00/00"}
+          </p>
         </div>
         <div className="absolute font-space text-white sm:ml-[19.5rem] sm:mt-[7.2rem] sm:text-xs md:ml-[37.6rem] md:mt-[34.8rem] md:text-base">
-          {cvc}
+          {cvc ? cvc : "000"}
         </div>
       </div>
       <div>

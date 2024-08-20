@@ -21,11 +21,12 @@ function Form({
       return setError((currentError) => !currentError);
     setConfirmed(!confirmed);
 
-    setName("Jane Appleseed");
+    setName("");
     setNum("0000 0000 0000 0000");
     setCvc("123");
     setDate("01/23");
   }
+
   return (
     <form
       className="h-screen items-center justify-center sm:mt-80 sm:max-w-2xl md:-mt-6 md:flex"
@@ -41,10 +42,10 @@ function Form({
           </label>
           <input
             type="text"
+            placeholder="e.g Jane Appleseed"
             value={name}
             onChange={(e) => setName(e.target.value)}
             className={`placeholder: rounded-md border p-3 font-space outline-none focus:border-DarkGrayishViolet md:w-[30rem] ${error ? "border-Red" : ""}`}
-            placeholder="e.g Jane Appleseed"
           />
           <span className="text-Red">{error ? "Can not be blank" : ""}</span>
         </div>
@@ -56,11 +57,18 @@ function Form({
             Card Number
           </label>
           <input
-            type="number"
-            value={num}
+            type="text"
             maxLength={19}
-            onChange={(e) => setNum(e.target.value)}
-            className={`placeholder: rounded-md border p-3 font-space outline-none focus:border-DarkGrayishViolet md:w-[30rem] ${error ? "border-Red" : "border-DarkGrayishViolet"}`}
+            value={num}
+            onChange={(e) =>
+              setNum(
+                e.target.value
+                  .replace(/\s+/g, "")
+                  .replace(/(.{4})/g, "$1 ")
+                  .trim(),
+              )
+            }
+            className={`placeholder: rounded-md border p-3 font-space outline-none focus:border-DarkGrayishViolet md:w-[30rem] ${error ? "border-Red" : ""}`}
             placeholder="e.g 1234 5678 9123 0000"
           />
           <span className="text-Red">
@@ -79,7 +87,7 @@ function Form({
               type="month"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className={`placeholder: w-auto rounded-md border p-3 font-space outline-none focus:border-DarkGrayishViolet ${error ? "border-Red" : "border-DarkGrayishViolet"}`}
+              className={`placeholder: w-auto rounded-md border p-3 font-space outline-none focus:border-DarkGrayishViolet ${error ? "border-Red" : ""}`}
             />
             <span className="text-Red">{error ? "Can not be blank" : ""}</span>
           </div>
@@ -91,11 +99,11 @@ function Form({
               Cvc
             </label>
             <input
-              type="number"
-              maxLength={3}
+              type="numeric"
+              max={999}
               value={cvc}
               onChange={(e) => setCvc(e.target.value)}
-              className={`placeholder: w-auto rounded-md border p-3 font-space outline-none focus:border-DarkGrayishViolet ${error ? "border-Red" : "border-DarkGrayishViolet"}`}
+              className={`placeholder: w-auto rounded-md border p-3 font-space outline-none focus:border-DarkGrayishViolet ${error ? "border-Red" : ""}`}
               placeholder="e.g 123"
             />
             <span className="text-Red">{error ? "Can not be blank" : ""}</span>
