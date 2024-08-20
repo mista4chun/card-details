@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#hero {
+  background-image: url("./assets/images/bg-main-desktop.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100dvh;
+}
+
+@media (max-width: 576px) {
+  #hero {
+    background-image: url("./assets/images/bg-main-mobile.png");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    height: 250px;
+    
+  }
+}
